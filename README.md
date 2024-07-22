@@ -1,6 +1,6 @@
 # Projeto de Gerenciamento de Eventos
 
-Este projeto é uma aplicação desenvolvida com Java 21 e Spring Boot, que permite a criação, leitura, atualização e exclusão (CRUD) de eventos. Além disso, possui funcionalidades de filtragem para facilitar a busca de eventos específicos.
+Este projeto é uma aplicação desenvolvida com Java 21 e Spring Boot, que permite a criação, leitura, atualização e exclusão (CRUD) de eventos. Além disso, possui funcionalidades de filtragem para facilitar a busca de eventos específicos. A aplicação também integra com a AWS para o armazenamento de imagens.
 
 ## Funcionalidades
 
@@ -15,10 +15,31 @@ Este projeto é uma aplicação desenvolvida com Java 21 e Spring Boot, que perm
 - **Java 21**: Linguagem de programação utilizada para desenvolver a aplicação.
 - **Spring Boot**: Framework que facilita a criação de aplicações Java.
 - **Maven**: Gerenciador de dependências e build.
-- **H2 Database**: Banco de dados em memória utilizado para desenvolvimento e testes.
+- **PostgreSQL**: Banco de dados relacional utilizado para armazenamento persistente.
 - **Spring Data JPA**: Abstração para facilitar a interação com o banco de dados.
-- **PostgreSQL**: Banco de dados relacional.
-- **DevTools**: Ferramente para o desenvolvimento
+- **DevTools**: Ferramenta para melhorar a experiência de desenvolvimento.
+- **AWS S3**: Serviço da Amazon para armazenamento de imagens.
+
+## Uso
+
+Após iniciar a aplicação, você pode acessar a interface web através do seguinte URL:
+
+
+Aqui você pode criar, visualizar, atualizar, excluir e filtrar eventos conforme necessário.
+
+## Contribuição
+
+Se você quiser contribuir para este projeto, siga os passos abaixo:
+
+1. Faça um fork do projeto.
+2. Crie uma nova branch (git checkout -b feature/nova-funcionalidade).
+3. Commit suas alterações (git commit -m 'Adicionei nova funcionalidade').
+4. Faça um push para a branch (git push origin feature/nova-funcionalidade).
+5. Abra um Pull Request.
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ## Dependências
 
@@ -44,11 +65,16 @@ Certifique-se de que as seguintes dependências estão presentes no arquivo `pom
         <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
 
-    <!-- Banco de dados H2 -->
+    <!-- Banco de dados PostgreSQL -->
     <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <scope>runtime</scope>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+    </dependency>
+
+    <!-- AWS SDK para Java -->
+    <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-s3</artifactId>
     </dependency>
 
     <!-- Testes -->
@@ -58,46 +84,3 @@ Certifique-se de que as seguintes dependências estão presentes no arquivo `pom
         <scope>test</scope>
     </dependency>
 </dependencies>
-```
-## Configuração
-
-1. **Clone o repositório**:
-
-    ```bash
-    git clone https://github.com/seu-usuario/seu-repositorio.git
-    ```
-
-2. **Navegue até o diretório do projeto**:
-
-    ```bash
-    cd seu-repositorio
-    ```
-
-3. **Compile e execute a aplicação**:
-
-    ```bash
-    mvn spring-boot:run
-    ```
-
-## Uso
-
-Após iniciar a aplicação, você pode acessar a interface web através do seguinte URL:
-
-
-Aqui você pode criar, visualizar, atualizar, excluir e filtrar eventos conforme necessário.
-
-## Contribuição
-
-Se você quiser contribuir para este projeto, siga os passos abaixo:
-
-1. Faça um fork do projeto.
-2. Crie uma nova branch (`git checkout -b feature/nova-funcionalidade`).
-3. Commit suas alterações (`git commit -m 'Adicionei nova funcionalidade'`).
-4. Faça um push para a branch (`git push origin feature/nova-funcionalidade`).
-5. Abra um Pull Request.
-
-## Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-
