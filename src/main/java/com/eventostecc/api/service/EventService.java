@@ -1,6 +1,7 @@
 package com.eventostecc.api.service;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.eventostecc.api.repositories.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class EventService {
 	@Autowired
 	private AmazonS3 s3Client;
 
+	@Autowired
+	private EventRepository	eventRepository;
+
 	@Value("${aws.bucket.name}")
 	private String bucketName;
 
@@ -35,9 +39,12 @@ public class EventService {
 		Event newEvent = new Event();
 		newEvent.setTitle(data.title());
 		newEvent.setDescription(data.description());
-		newEvent.setDescription(data.description());
 		newEvent.setDate(new Date(data.date()));
 		newEvent.setImgUrl(imgUrl);
+		newEvent.setEventUrl(data.eventUrl());
+		newEvent.setRemote(data.remote());
+
+		eventRepository.save(newEvent);
 
 		return newEvent;
 
@@ -53,7 +60,7 @@ public class EventService {
 			return s3Client.getUrl(bucketName, filename).toString();
 		} catch (Exception e) {
 			System.out.println("Erro ao subir arquivo: " + e.getMessage());
-			return null;
+			return "";
 		}
     }
 
